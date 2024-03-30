@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
@@ -24,6 +23,7 @@ Future<void> main() async {
         debugShowCheckedModeBanner: true,
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
+        theme: ThemeData(fontFamily: 'Lato'),
         builder: EasyLoading.init(),
       ),
     ),

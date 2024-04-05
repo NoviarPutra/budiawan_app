@@ -68,62 +68,64 @@ class LoginCashierView extends GetView<LoginCashierController> {
                 alignment: Alignment.center,
                 child: FormBuilder(
                   key: controller.formKey,
-                  child: Column(
-                    children: [
-                      baseInputText(
-                        label: 'Email',
-                        name: 'email',
-                        hintText: 'example@email.com',
-                        prefixIcon: const Icon(Icons.email),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: 'Email tidak boleh kosong',
-                          ),
-                          FormBuilderValidators.email(
-                            errorText: 'Email tidak valid',
-                          ),
-                        ]),
-                      ),
-                      baseInputText(
-                        label: 'Password',
-                        name: 'password',
-                        hintText: '************',
-                        obscureText: true,
-                        prefixIcon: const Icon(Icons.password),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: 'Password tidak boleh kosong',
-                          ),
-                        ]),
-                      ),
-                      baseElevatedButton(
-                          title: 'Login',
-                          onTap: () {
-                            controller.handleLogin();
-                          }),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        baseInputText(
+                          label: 'Email',
+                          name: 'email',
+                          hintText: 'example@email.com',
+                          prefixIcon: const Icon(Icons.email),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: 'Email tidak boleh kosong',
+                            ),
+                            FormBuilderValidators.email(
+                              errorText: 'Email tidak valid',
+                            ),
+                          ]),
+                        ),
+                        baseInputText(
+                          label: 'Password',
+                          name: 'password',
+                          hintText: '************',
+                          obscureText: true,
+                          prefixIcon: const Icon(Icons.password),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: 'Password tidak boleh kosong',
+                            ),
+                          ]),
+                        ),
+                        baseElevatedButton(
+                            title: 'Login',
+                            onTap: () {
+                              controller.handleLogin();
+                            }),
 
-                      // Forgot Password
-                      const SizedBox(height: 5),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text('Forgot Password?'),
-                      ),
+                        // Forgot Password
+                        const SizedBox(height: 5),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text('Forgot Password?'),
+                        ),
 
-                      // Register
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Don\'t have an account?'),
-                          TextButton(
-                            onPressed: () {
-                              Get.offNamed('/cashier/auth/register');
-                            },
-                            child: const Text('Register'),
-                          ),
-                        ],
-                      ),
-                    ],
+                        // Register
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Don\'t have an account?'),
+                            TextButton(
+                              onPressed: () {
+                                Get.offNamed('/cashier/auth/register');
+                              },
+                              child: const Text('Register'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

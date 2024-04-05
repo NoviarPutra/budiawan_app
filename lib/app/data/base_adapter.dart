@@ -10,7 +10,6 @@ class BaseAdapter {
         baseUrl: baseUrl,
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
       ),
     );

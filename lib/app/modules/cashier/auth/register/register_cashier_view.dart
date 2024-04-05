@@ -36,96 +36,113 @@ class RegisterCashierView extends GetView<RegisterCashierController> {
         ),
         body: Container(
           padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              // Text Login
-              Container(
-                padding: const EdgeInsets.all(20),
-                alignment: Alignment.center,
-                child: const Column(
-                  children: [
-                    Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    Text(
-                      'Create an account',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Form Login
-              Container(
-                padding: const EdgeInsets.all(20),
-                alignment: Alignment.center,
-                child: FormBuilder(
-                  key: controller.formKey,
-                  child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // Text Login
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  child: const Column(
                     children: [
-                      baseInputText(
-                        label: 'Email',
-                        name: 'email',
-                        hintText: 'example@email.com',
-                        prefixIcon: const Icon(Icons.email),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: 'Email tidak boleh kosong',
-                          ),
-                          FormBuilderValidators.email(
-                            errorText: 'Email tidak valid',
-                          ),
-                        ]),
+                      Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
-                      baseInputText(
-                        label: 'Password',
-                        name: 'password',
-                        hintText: '************',
-                        obscureText: true,
-                        prefixIcon: const Icon(Icons.password),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: 'Password tidak boleh kosong',
-                          ),
-                        ]),
-                      ),
-                      baseInputText(
-                        label: 'Confirm Password',
-                        name: 'confirmPassword',
-                        hintText: '************',
-                        obscureText: true,
-                        prefixIcon: const Icon(Icons.password),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: 'Confirm Password tidak boleh kosong',
-                          ),
-                        ]),
-                      ),
-                      baseElevatedButton(
-                        title: 'Register',
-                        onTap: () {
-                          // controller.handleLogin();
-                        },
-                      ),
-                      const Text('or'),
-                      baseElevatedButton(
-                        title: 'Login',
-                        color: Colors.grey,
-                        onTap: () {
-                          Get.offNamed('/cashier/auth/login');
-                        },
+                      Text(
+                        'Create an account',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+
+                // Form Login
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  child: FormBuilder(
+                    key: controller.formKey,
+                    child: Column(
+                      children: [
+                        baseInputText(
+                          label: 'Nama',
+                          name: 'name',
+                          hintText: 'Example Name',
+                          prefixIcon: const Icon(Icons.person),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: 'Name tidak boleh kosong',
+                            ),
+                            FormBuilderValidators.minLength(
+                              5,
+                              errorText: 'Minimal 5 karakter',
+                            ),
+                          ]),
+                        ),
+                        baseInputText(
+                          label: 'Email',
+                          name: 'email',
+                          hintText: 'example@email.com',
+                          prefixIcon: const Icon(Icons.email),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: 'Email tidak boleh kosong',
+                            ),
+                            FormBuilderValidators.email(
+                              errorText: 'Email tidak valid',
+                            ),
+                          ]),
+                        ),
+                        baseInputText(
+                          label: 'Password',
+                          name: 'password',
+                          hintText: '************',
+                          obscureText: true,
+                          prefixIcon: const Icon(Icons.password),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: 'Password tidak boleh kosong',
+                            ),
+                          ]),
+                        ),
+                        baseInputText(
+                          label: 'Confirm Password',
+                          name: 'confirmPassword',
+                          hintText: '************',
+                          obscureText: true,
+                          prefixIcon: const Icon(Icons.password),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: 'Confirm Password tidak boleh kosong',
+                            ),
+                          ]),
+                        ),
+                        baseElevatedButton(
+                          title: 'Register',
+                          onTap: () {
+                            controller.register();
+                          },
+                        ),
+                        const Text('or'),
+                        baseElevatedButton(
+                          title: 'Login',
+                          color: Colors.grey,
+                          onTap: () {
+                            Get.offNamed('/cashier/auth/login');
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

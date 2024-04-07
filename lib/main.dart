@@ -20,7 +20,7 @@ Future<void> main() async {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: GetMaterialApp(
         title: "Budiawan App",
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
         theme: ThemeData(fontFamily: 'Lato'),

@@ -1,7 +1,6 @@
 // ignore_for_file: use_super_parameters
 
-import 'package:budiawan_app/interfaces/auth_register_response_interface.dart';
-import 'package:budiawan_app/utils/app_storage.dart';
+import 'package:budiawan_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ class DashboardCashierView extends GetView<DashboardCashierController> {
   const DashboardCashierView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    UserRegistered user = AppStorage.getUserCashier();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -31,12 +29,18 @@ class DashboardCashierView extends GetView<DashboardCashierController> {
                     onTap: () {
                       controller.handleLogout();
                     },
-                    child: const Text('Logout'),
+                    child: const ListTile(
+                      leading: Icon(Icons.logout),
+                      title: Text('Logout'),
+                    ),
                   ),
                   PopupMenuItem(
                     value: 2,
                     onTap: () => Get.offNamed('/home'),
-                    child: const Text('Back To Home'),
+                    child: const ListTile(
+                      leading: Icon(Icons.home),
+                      title: Text('Back To Home'),
+                    ),
                   )
                 ],
               );
@@ -45,10 +49,29 @@ class DashboardCashierView extends GetView<DashboardCashierController> {
           )
         ],
       ),
-      body: Center(
-        child: Text(
-          'Welcome ${user.name}',
-          style: const TextStyle(fontSize: 20),
+      body: Obx(
+        () => Container(
+          padding: const EdgeInsets.all(20),
+          child: controller.widgetOptions
+              .elementAt(controller.selectedIndex.value),
+        ),
+      ),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+          currentIndex: controller.selectedIndex.value,
+          selectedItemColor: primaryColor,
+          onTap: controller.onItemTapped,
+          unselectedItemColor: Colors.grey,
         ),
       ),
     );

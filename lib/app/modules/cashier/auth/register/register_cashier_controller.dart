@@ -16,6 +16,7 @@ class RegisterCashierController extends GetxController {
     isLoading.value = true;
     try {
       if (formKey.currentState?.saveAndValidate() ?? false) {
+        EasyLoading.show(status: 'Memproses...');
         final formData = formKey.currentState?.value;
         AuthRegisterDto payload = AuthRegisterDto(
           name: formData?['name'],
@@ -27,21 +28,22 @@ class RegisterCashierController extends GetxController {
           EasyLoading.showError("Konfirmasi password tidak cocok");
           return;
         }
-        print(payload.toJson());
-        // await AuthServices().register(payload);
-        // EasyLoading.showSuccess("Registrasi Berhasil");
-        // Get.offNamed('/auth/login');
+        await AuthServices().register(payload);
+        EasyLoading.showSuccess("Registrasi Berhasil");
+
+        // DELAY
+        await Future.delayed(const Duration(seconds: 1));
+        Get.offNamed('/cashier/auth/login');
       }
     } catch (e) {
       if (e is DioException) {
         EasyLoading.showError(e.response!.data['message']);
-        print(e.response);
         return;
       }
       EasyLoading.showError("Terjadi kesalahan pada server");
-      print(e.toString());
     } finally {
       isLoading.value = false;
+      EasyLoading.dismiss();
     }
   }
 }

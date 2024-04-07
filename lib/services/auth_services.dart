@@ -10,14 +10,14 @@ class AuthServices {
   AuthServices._();
 
   Future<AuthRegisterResponseInterface> register(AuthRegisterDto user) async {
-    final resource =
-        await BaseAdapter.dio().post('/auth/register', data: user.toJson());
+    final service = BaseAdapter.dio();
+    final resource = await service.post('/auth/register', data: user.toJson());
     return AuthRegisterResponseInterface.fromJson(resource.data);
   }
 
   Future<AuthLoginResponseInterface> login(AuthLoginDto user) async {
-    final resource =
-        await BaseAdapter.dio().post('/auth/login', data: user.toJson());
+    final service = BaseAdapter.dio();
+    final resource = await service.post('/auth/login', data: user.toJson());
     return AuthLoginResponseInterface.fromJson(resource.data);
   }
 }

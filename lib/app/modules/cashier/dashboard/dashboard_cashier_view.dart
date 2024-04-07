@@ -1,9 +1,10 @@
 // ignore_for_file: use_super_parameters
 
+import 'package:budiawan_app/interfaces/auth_register_response_interface.dart';
+import 'package:budiawan_app/utils/app_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'dashboard_cashier_controller.dart';
 
@@ -11,7 +12,7 @@ class DashboardCashierView extends GetView<DashboardCashierController> {
   const DashboardCashierView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    GetStorage storage = GetStorage();
+    UserRegistered user = AppStorage.getUserCashier();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -46,7 +47,7 @@ class DashboardCashierView extends GetView<DashboardCashierController> {
       ),
       body: Center(
         child: Text(
-          storage.read('userCashier')['email'],
+          'Welcome ${user.name}',
           style: const TextStyle(fontSize: 20),
         ),
       ),

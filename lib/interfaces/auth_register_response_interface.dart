@@ -3,7 +3,11 @@ class AuthRegisterResponseInterface {
   String? message;
   UserRegistered? data;
 
-  AuthRegisterResponseInterface({this.status, this.message, this.data});
+  AuthRegisterResponseInterface({
+    this.status,
+    this.message,
+    this.data,
+  });
 
   AuthRegisterResponseInterface.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -30,13 +34,14 @@ class UserRegistered {
   String? createdAt;
   String? updatedAt;
 
-  UserRegistered(
-      {this.name,
-      this.email,
-      this.role,
-      this.id,
-      this.createdAt,
-      this.updatedAt});
+  UserRegistered({
+    this.name,
+    this.email,
+    this.role,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   UserRegistered.fromJson(Map<String, dynamic> json) {
     name = json['name'];

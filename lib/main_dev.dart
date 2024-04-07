@@ -11,7 +11,7 @@ import 'app/routes/app_pages.dart';
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
   FlavorConfig(name: "Budiawan App Dev", variables: {
-    'baseUrl': dotenv.env['BASE_URL'],
+    'baseUrl': dotenv.env['BASE_URL_DEV'],
   });
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();

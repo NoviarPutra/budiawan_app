@@ -75,6 +75,7 @@ class RegisterCashierView extends GetView<RegisterCashierController> {
                           name: 'name',
                           hintText: 'Example Name',
                           prefixIcon: const Icon(Icons.person),
+                          onFieldSubmitted: (_) => controller.register(),
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(
                               errorText: 'Name tidak boleh kosong',
@@ -90,6 +91,7 @@ class RegisterCashierView extends GetView<RegisterCashierController> {
                           name: 'email',
                           hintText: 'example@email.com',
                           prefixIcon: const Icon(Icons.email),
+                          onFieldSubmitted: (_) => controller.register(),
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(
                               errorText: 'Email tidak boleh kosong',
@@ -105,6 +107,7 @@ class RegisterCashierView extends GetView<RegisterCashierController> {
                           hintText: '************',
                           obscureText: true,
                           prefixIcon: const Icon(Icons.password),
+                          onFieldSubmitted: (_) => controller.register(),
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(
                               errorText: 'Password tidak boleh kosong',
@@ -117,6 +120,7 @@ class RegisterCashierView extends GetView<RegisterCashierController> {
                           hintText: '************',
                           obscureText: true,
                           prefixIcon: const Icon(Icons.password),
+                          onFieldSubmitted: (_) => controller.register(),
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(
                               errorText: 'Confirm Password tidak boleh kosong',

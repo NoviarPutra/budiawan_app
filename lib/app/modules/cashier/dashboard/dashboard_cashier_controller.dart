@@ -8,6 +8,7 @@ class DashboardCashierController extends GetxController {
 
   Future<void> handleLogout() async {
     storage.remove('isCashierLoggedIn');
+    storage.remove('userCashier');
     Get.offAllNamed('/cashier/auth/login');
   }
 }

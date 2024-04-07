@@ -57,23 +57,49 @@ class DashboardCashierView extends GetView<DashboardCashierController> {
         ),
       ),
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
+        () => NavigationBar(
+          selectedIndex: controller.selectedIndex.value,
+          onDestinationSelected: controller.onItemTapped,
+          indicatorColor: secondaryColor,
+          animationDuration: const Duration(milliseconds: 500),
+          destinations: const [
+            NavigationDestination(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
+              icon: Icon(Icons.shopping_bag_outlined),
+              label: 'Order',
+            ),
+            NavigationDestination(
               icon: Icon(Icons.person),
               label: 'Profile',
             ),
           ],
-          currentIndex: controller.selectedIndex.value,
-          selectedItemColor: primaryColor,
-          onTap: controller.onItemTapped,
-          unselectedItemColor: Colors.grey,
         ),
       ),
+      // bottomNavigationBar: Obx(
+      //   () => BottomNavigationBar(
+      //     items: const <BottomNavigationBarItem>[
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         label: 'Home',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.shopping_bag_outlined),
+      //         label: 'Order',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.person),
+      //         label: 'Profile',
+      //       ),
+      //     ],
+      //     currentIndex: controller.selectedIndex.value,
+      //     selectedItemColor: primaryColor,
+      //     onTap: controller.onItemTapped,
+      //     unselectedItemColor: Colors.grey,
+      //   ),
+      // ),
     );
   }
 }

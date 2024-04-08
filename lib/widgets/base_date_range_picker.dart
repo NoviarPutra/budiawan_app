@@ -15,24 +15,6 @@ Widget baseDateRangePicker({
     padding: const EdgeInsets.all(10),
     child: Column(
       children: [
-        // FormBuilderDateTimePicker(
-        //   name: name,
-        //   inputType: InputType.date,
-        //   firstDate: firstDate,
-        //   lastDate: lastDate,
-        //   format: DateFormat(dateFormat),
-        //   onChanged: onDateChanged,
-        //   decoration: InputDecoration(
-        //     labelText: title,
-        //     prefixIcon: prefixIcon,
-        //     contentPadding: const EdgeInsets.all(10),
-        //     border: const OutlineInputBorder(
-        //       borderRadius: BorderRadius.all(
-        //         Radius.circular(10),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         FormBuilderDateRangePicker(
           name: name,
           firstDate: firstDate,

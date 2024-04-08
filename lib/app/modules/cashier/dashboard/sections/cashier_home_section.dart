@@ -1,4 +1,6 @@
 import 'package:budiawan_app/app/modules/cashier/dashboard/dashboard_cashier_controller.dart';
+import 'package:budiawan_app/app/modules/cashier/dashboard/sections/details/cashier_popular_products.dart';
+import 'package:budiawan_app/app/modules/cashier/dashboard/sections/details/cashier_report_selling.dart';
 import 'package:budiawan_app/interfaces/auth_register_response_interface.dart';
 import 'package:budiawan_app/utils/app_storage.dart';
 import 'package:budiawan_app/utils/constants.dart';
@@ -33,34 +35,42 @@ class CashierHomeSection extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            dateRangePicker(controller),
-            const SizedBox(
-              height: 20,
+            FormBuilder(
+              key: controller.formKey,
+              child: baseDateRangePicker(
+                name: 'dateRange',
+                title: 'Pilih Tanggal',
+                firstDate: DateTime.now().subtract(
+                  const Duration(days: Duration.minutesPerDay * 30),
+                ),
+                lastDate: DateTime.now(),
+                prefixIcon: const Icon(Icons.calendar_month),
+                onDateChanged: (value) {},
+              ),
             ),
             detailSection(
-              'Laporan Penjualan',
-              [
-                textInfo('Total Penjualan', "Rp. 0"),
+              title: 'Laporan Penjualan',
+              children: [
+                textInfo(title: 'Total Penjualan', value: 'Rp. 0'),
                 const SizedBox(height: 5),
-                textInfo('Total Transaksi', "0"),
+                textInfo(title: 'Total Transaksi', value: '0'),
                 const SizedBox(height: 5),
-                textInfo('Total Keuntungan', "Rp. 0"),
+                textInfo(title: 'Total Keuntungan', value: 'Rp. 0'),
               ],
-              'Lihat Detail Penjualan',
-            ),
-            const SizedBox(
-              height: 20,
+              subtitle: 'Lihat Detail',
+              onPressedDetail: () => Get.to(const CashierReportSelling()),
             ),
             detailSection(
-              'Produk Terlaris',
-              [
-                textInfo('Sup Ayam', "50"),
+              title: 'Produk Terlaris',
+              children: [
+                textInfo(title: 'Sup Ayam', value: '50'),
                 const SizedBox(height: 5),
-                textInfo('Sup Ikan', "20"),
+                textInfo(title: 'Nasi Goreng', value: '20'),
                 const SizedBox(height: 5),
-                textInfo('Nasi Goreng', "10"),
+                textInfo(title: 'Sup Ikan', value: '10'),
               ],
-              'Lihat Detail',
+              subtitle: 'Lihat Detail',
+              onPressedDetail: () => Get.to(const CashierPopularProducts()),
             ),
           ],
         ),
@@ -68,11 +78,12 @@ class CashierHomeSection extends StatelessWidget {
     );
   }
 
-  Column detailSection(
-    String title,
-    List<Widget> children,
-    String detailText,
-  ) {
+  Column detailSection({
+    required title,
+    required List<Widget> children,
+    void Function()? onPressedDetail,
+    required String subtitle,
+  }) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
         padding: const EdgeInsets.all(10),
@@ -93,31 +104,27 @@ class CashierHomeSection extends StatelessWidget {
           children: children,
         ),
       ),
-      expandDetail(detailText),
+      Container(
+        alignment: Alignment.centerRight,
+        child: TextButton(
+          onPressed: onPressedDetail,
+          child: Text(
+            subtitle,
+            style: subtitleText,
+          ),
+        ),
+      )
     ]);
   }
 
-  Container expandDetail(String text) {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () {},
-        child: Text(
-          text,
-          style: subtitleText,
-        ),
-      ),
-    );
-  }
-
-  Row textInfo(
-    String keyItem,
-    String value,
-  ) {
+  Row textInfo({
+    required String title,
+    required String value,
+  }) {
     return Row(
       children: [
         Text(
-          "$keyItem :",
+          title,
           style: subtitleTextWhite,
         ),
         const Spacer(),
@@ -126,22 +133,6 @@ class CashierHomeSection extends StatelessWidget {
           style: subtitleTextWhite,
         ),
       ],
-    );
-  }
-
-  FormBuilder dateRangePicker(DashboardCashierController controller) {
-    return FormBuilder(
-      key: controller.formKey,
-      child: baseDateRangePicker(
-        name: 'date',
-        title: 'Pilih Tanggal',
-        firstDate: DateTime.now().subtract(
-          const Duration(days: Duration.minutesPerDay * 30),
-        ),
-        lastDate: DateTime.now(),
-        prefixIcon: const Icon(Icons.calendar_month),
-        onDateChanged: (value) {},
-      ),
     );
   }
 }

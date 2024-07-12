@@ -6,15 +6,20 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-  static const REGISTER = _Paths.CASHIER + _Paths.AUTH + _Paths.REGISTER;
-  static const LOGIN = _Paths.CASHIER + _Paths.AUTH + _Paths.LOGIN;
-  static const DASHBOARD = _Paths.CASHIER + _Paths.DASHBOARD;
+  static const CASHIER_REGISTER =
+      _Paths.CASHIER + _Paths.AUTH + _Paths.REGISTER;
+  static const CASHIER_LOGIN = _Paths.CASHIER + _Paths.AUTH + _Paths.LOGIN;
+  static const CASHIER_DASHBOARD = _Paths.CASHIER + _Paths.DASHBOARD;
+  static const CHAT_DASHBOARD = _Paths.CHAT + _Paths.DASHBOARD;
+  static const CHAT_LOGIN = _Paths.CHAT + _Paths.AUTH + _Paths.LOGIN;
+  static const CHAT_REGISTER = _Paths.CHAT + _Paths.AUTH + _Paths.REGISTER;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const CASHIER = '/cashier';
+  static const CHAT = '/chat';
   static const AUTH = '/auth';
   static const REGISTER = '/register';
   static const LOGIN = '/login';
